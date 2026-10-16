@@ -1,8 +1,18 @@
 body {
     margin: 0;
-    background-color: #282828;
+    background-color: #000000;
     color: #f5f5f5;
     overflow-x: hidden;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+h1 {
+    font-weight: 600;
+    letter-spacing: -0.03em;
+}
+
+button {
+    font-family: inherit;
 }
 
 .sentence-container {
@@ -15,11 +25,27 @@ body {
 }
 
 .text_left {
-    animation: enter-from-left 1.2s ease-out both;
+    animation: enter-from-left 1.8s ease-out both;
 }
 
 .text_right {
-    animation: enter-from-right 1.2s ease-out both;
+    animation: enter-from-right 1.8s ease-out both;
+}
+
+@keyframes button_up {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#start_button {
+    animation: button_up 1.8s ease-out both;
 }
 
 @keyframes enter-from-left {
@@ -45,7 +71,8 @@ body {
 /* for users that have reduced motion enabled */
 @media (prefers-reduced-motion: reduce) {
     .text_left,
-    .text_right {
+    .text_right,
+    #start_button {
         animation: none;
     }
 }
