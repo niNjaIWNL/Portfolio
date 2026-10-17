@@ -1,39 +1,3 @@
-// This creates a trail on mouse cursor
-const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-);
-
-let lastParticleTime = 0;
-
-document.addEventListener("pointermove", (event) => {
-    if (reducedMotion.matches || event.pointerType ==="touch") {
-        return;
-    } // returns if user has reduce motion or is a touch screen without pointer
-
-    const now = performance.now();
-
-    if (now - lastParticleTime < 25) {
-        return;
-    }
-
-    lastParticleTime = now;
-
-    const particle = document.createElement("span");
-
-    particle.classList.add("cursor-particle")
-    particle.setAttribute("aria-hidden", "true");
-
-    particle.style.left = `${event.clientX}px`;
-    particle.style.top = `${event.clientY}px`;
-
-    document.body.appendChild(particle);
-
-    particle.addEventListener("animationend", () => {
-        particle.remove();
-    }, {once: true });
-});
-// ends cursor trail
-
 // This creates a space-like animated background
 const canvas = document.querySelector("#space-background");
 const context = canvas.getContext("2d")
@@ -125,3 +89,78 @@ function resizeSpace() {
 window.addEventListener("resize", resizeSpace);
 
 resizeSpace();
+
+
+const projectCarousel = document.querySelector(".project-carousel");
+
+projectCarousel.addEventListener("wheel", (event) => {
+    // Preserve pinch-to-zoom and native horizontal trackpad scrolling.
+    if (event.ctrlKey || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) {
+        return;
+    }
+
+    let movement = event.deltaY;
+
+    // Wheel input can be measured in pixels, lines, or pages.
+    if (event.deltaMode === 1) {
+        movement *= 16;
+    } else if (event.deltaMode === 2) {
+        movement *= projectCarousel.clientWidth;
+    }
+
+    const maxScroll =
+        projectCarousel.scrollWidth - projectCarousel.clientWidth;
+
+    const atStart = projectCarousel.scrollLeft <= 1;
+    const atEnd = projectCarousel.scrollLeft >= maxScroll - 1;
+
+    if (
+        maxScroll <= 0 ||
+        (movement < 0 && atStart) ||
+        (movement > 0 && atEnd)
+    ) {
+        return;
+    }
+
+    event.preventDefault();
+    projectCarousel.scrollLeft += movement;
+}, { passive: false });
+
+const projectCards = document.querySelectorAll(".project-card");
+const precisePointer = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+);
+
+projectCards.forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+        if (
+            reducedMotion.matches ||
+            !precisePointer.matches ||
+            event.pointerType === "touch"
+        ) {
+            return;
+        }
+
+        const bounds = card.getBoundingClientRect();
+
+        const x = (event.clientX - bounds.left) / bounds.width;
+        const y = (event.clientY - bounds.top) / bounds.height;
+
+        const rotateX = (0.5 - y) * 12;
+        const rotateY = (x - 0.5) * 12;
+
+        card.style.transform = `
+            perspective(900px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+        `;
+    });
+
+    card.addEventListener("pointerleave", () => {
+        card.style.removeProperty("transform");
+    });
+
+    card.addEventListener("pointercancel", () => {
+        card.style.removeProperty("transform");
+    });
+});

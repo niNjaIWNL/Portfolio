@@ -10,6 +10,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
         <link href="styles.css" rel="stylesheet">
     </head>
 
@@ -18,13 +19,134 @@
 
         <div class="sentence-container">
             <h1 class="text_left">Hi there, I am Marcos!</h1>
-            <h1 class="text_right">I am a student full-stack engineer.</h1>
-            <button type="button" id="start_button" class="btn btn-outline-light">Start</button>
+            <h1 class="text_right">I am a student software engineer.</h1>
+            <a href="#projects" id="start_button" class="btn btn-outline-light">
+                Start
+            </a>
         </div>
 
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <h2 id="projects-title">My projects</h2>
+                
+                <p id="projects-help">Scroll over the cards or swipe to explore</p>
+
+                <div
+                    class="project-carousel"
+                    tabindex="0"
+                    role="region"
+                    aria-labelledby="projects-title"
+                    aria-describedby="projects-help"
+                >
+                    <article class="project-card">
+                        <h3>HoldingPattern</h3>
+                        <p>Full-stack web app built with Python, Flask, 
+                            HTML/CSS, and Jinja. Shows delay statistical analysis
+                            for regular scheduled flights in Brazil. Created combining
+                            Full-Stack web development with Data Analysis using Python
+                             with Pandas.
+                        </p>
+                        <p class="project-tech">Python, Flask, HTML/CSS, Jinja, 
+                            Pandas, Pytest, REST APIs
+                        </p>
+                        <a href="https://holdingpattern-ql11.onrender.com/">Check the project in action!</a>
+                    </article>
+
+                    <article class="project-card">
+                        <h3>Chrome Gmail Overlay</h3>
+                        <p>Designed and built a Chrome extension that works as a 
+                            overlay in Gmail. It reads regular email fields using DOM
+                            scraping, runs the information through a JavaScript algorithm
+                            and outputs the expected information. Built for my current company.
+                        </p>
+                        <p class="project-tech">JavaScript, CSS, DOM Scraping, Claude Code</p>
+                    </article>
+
+                    <article class="project-card">
+                        <h3>Project one</h3>
+                        <p>Describe project</p>
+                        <p class="project-tech">techs</p>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="education" class="education-section">
+            <div class="container">
+                <h2 id="education-title">My education and certificates</h2>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <svg
+                class="mountain-silhouette"
+                viewBox="0 0 1440 240"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+            >
+                <path
+                    fill="#000"
+                    d="
+                        M 0 180
+                        L 45 145
+                        L 75 165
+                        L 135 95
+                        L 170 130
+                        L 205 110
+                        L 270 35
+                        L 310 90
+                        L 340 75
+                        L 395 145
+                        L 430 120
+                        L 485 175
+                        L 545 105
+                        L 575 125
+                        L 635 55
+                        L 675 110
+                        L 705 90
+                        L 765 160
+                        L 810 125
+                        L 840 145
+                        L 915 40
+                        L 950 85
+                        L 980 65
+                        L 1045 145
+                        L 1080 115
+                        L 1130 170
+                        L 1195 95
+                        L 1225 120
+                        L 1290 50
+                        L 1330 105
+                        L 1360 90
+                        L 1410 155
+                        L 1440 140
+                        L 1440 240
+                        L 0 240
+                        Z
+                    "
+                />
+            </svg>
+
+            <div class="footer-content">
+                <p>Marcos Ziller. 2026</p>
+                <a 
+                    href="https://github.com/niNjaIWNL"
+                    class="link-light d-inline-block mt-3"
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    aria-label="GitHub Profile">
+                    <i 
+                        class="bi bi-github" 
+                        style="font-size: 2rem;"
+                        aria-hidden="true"
+                    ></i>
+                </a>
+            </div>
+        </footer>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    
-    <script src="app.js"></script>
+        <script src="app.js"></script>
     </body>
 
 </html>

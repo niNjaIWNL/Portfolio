@@ -1,6 +1,11 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
-    background-color: #000000;
+    background-color: #0a2342;
+    background: linear-gradient(to top, #1e2f3d, #071a31);
     color: #f5f5f5;
     overflow-x: hidden;
     font-family: "Space Grotesk", sans-serif;
@@ -9,6 +14,7 @@ body {
 h1 {
     font-weight: 600;
     letter-spacing: -0.03em;
+    
 }
 
 button {
@@ -68,12 +74,22 @@ button {
     }
 }
 
+.projects-section {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    padding: 6rem 0;
+}
+
 /* for users that have reduced motion enabled */
 @media (prefers-reduced-motion: reduce) {
     .text_left,
     .text_right,
     #start_button {
         animation: none;
+    }
+    html {
+        scroll-behavior: auto;
     }
 }
 
@@ -113,4 +129,81 @@ button {
 .sentence-container {
     position: relative;
     z-index: 1;
+}
+
+.projects-section {
+    position: relative;
+    isolation: isolate;
+}
+
+.project-carousel {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0.25rem 1.5rem;
+    scrollbar-color: #8b9fff #181822;
+    scrollbar-width: thin;
+}
+
+.project-card {
+    flex: 0 0  min(85%, 360px);
+    min-height: 300px;
+    padding: 2rem;
+    border: 1px solid rgba(139, 159, 255, 0.35);
+    border-radius: 1rem;
+    background: rgba(15, 18, 32, 0.92);
+    transform: perspective(900px) rotateX(0deg) rotateY(0deg);
+    transition:
+        transform 150ms ease-out,
+        box-shadow 200ms ease,
+        border-color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .project-card:hover {
+        border-color: #8b9fff;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+}
+
+.project-card:focus-within {
+    border-color: #8b9fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card {
+        transform: none !important;
+        transition: none;
+    }
+}
+
+.project-tech {
+    color: #aebcff;
+}
+
+.project-carousel:focus-visible {
+    outline: 2px solid #8b9fff;
+    outline-offset: 6px;
+}
+
+.site-footer {
+    position: relative;
+    z-index: 1;
+    margin-top: 5rem;
+}
+
+.mountain-silhouette {
+    display: block;
+    width: 100%;
+    height: clamp(85px, 18vw, 240px);
+}
+
+.footer-content {
+    padding: 2rem 1rem;
+    background: #000;
+    text-align: center;
+}
+
+.footer-content p {
+    margin: 0;
 }
